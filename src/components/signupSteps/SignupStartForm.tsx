@@ -1,9 +1,28 @@
-function LoginStartForm () {
+import React, { useEffect } from "react";
+
+interface FormFill {
+  onFill: (isFull: boolean) => void;
+  nextStep: () => void;
+}
+
+const SignupStartForm: React.FC<FormFill> = ({ onFill, nextStep }) => {
+  useEffect(() => {
+    document.querySelectorAll("input").forEach(el => {
+      el.addEventListener("change", () => {
+        onFill(true)
+      })
+    })
+  }, [])
+
+  const validateData = () => {
+    nextStep()
+  }
   return (
-    <div
+    <form
       className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-[480px] h-[700px] relative px-10 py-16 rounded-lg bg-white"
       style={{ boxShadow: "0px 5px 20px 0 rgba(108,117,139,0.2)" }}
     >
+      {/* Logo */}
       <div className="flex-grow-0 flex-shrink-0 w-[400px] h-8 relative">
         <div className="flex justify-center items-start absolute left-0 top-0 gap-0.5">
           <svg
@@ -71,53 +90,45 @@ function LoginStartForm () {
           <p className="flex-grow-0 flex-shrink-0 text-2xl font-bold text-left text-[#20496c]">Chad</p>
         </div>
       </div>
-      <div className="flex-grow-0 flex-shrink-0 w-[400px] h-6 relative">
-        <div className="w-[400px] h-6 absolute left-[-1px] top-[-1px]" />
-      </div>
-      <p className="self-stretch flex-grow-0 flex-shrink-0 w-[400px] text-2xl font-semibold text-left text-[#134267]">
+      <p className="self-stretch mt-6 flex-grow-0 flex-shrink-0 w-[400px] text-2xl font-semibold text-left text-[#134267]">
         Welcome to Chad
       </p>
-      <div className="flex-grow-0 flex-shrink-0 w-[400px] h-4 relative">
-        <div className="w-[400px] h-4 absolute left-[-1px] top-[-1px]" />
-      </div>
-      <p className="self-stretch flex-grow-0 flex-shrink-0 w-[400px] text-sm text-left text-[#4f637d]">
+      <p className="self-stretch mt-4 flex-grow-0 flex-shrink-0 w-[400px] text-sm text-left text-[#4f637d]">
         Go live in 10 minutes! Our self-service widget empowers your customers to manage orders and
         track shipments 24/7 without driving you crazy.
       </p>
-      <div className="flex-grow-0 flex-shrink-0 w-[400px] h-8 relative">
-        <div className="w-[400px] h-8 absolute left-[-1px] top-[-1px]" />
-      </div>
-      <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 relative bg-white">
-        <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[400px] relative gap-2">
+      <div className="flex mt-8 flex-col justify-start items-center flex-grow-0 flex-shrink-0 relative bg-white">
+        {/* Email */}
+        <div className="flex mt-6 flex-col  justify-start items-start flex-grow-0 flex-shrink-0 w-[400px] relative gap-2">
           <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-left text-[#4f637d]">
             Email
           </p>
-          <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 h-[45px] relative gap-2.5 pl-[17px] pr-2.5 py-2.5 rounded bg-[#f8f9fc]">
-            <p className="flex-grow w-[373px] text-base text-left text-[#c3cad5]">
-              megachad@trychad.com
-            </p>
-          </div>
+          <input 
+            className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 h-[45px] relative gap-2.5 pl-[17px] pr-2.5 py-2.5 rounded bg-[#f8f9fc]"
+            placeholder="megachad@trychad.com"
+            />
         </div>
-        <div className="flex-grow-0 flex-shrink-0 w-[400px] h-6 relative">
-          <div className="w-[400px] h-6 absolute left-[-1px] top-[-1px]" />
-        </div>
-        <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[400px] relative gap-2">
+        {/* Name */}
+        <div className="flex mt-6 flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[400px] relative gap-2">
           <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-left text-[#4f637d]">
             Your name
           </p>
-          <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 h-[45px] relative gap-2.5 pl-[17px] pr-2.5 py-2.5 rounded bg-[#f8f9fc]">
-            <p className="flex-grow w-[373px] text-base text-left text-[#c3cad5]">Mega Chad</p>
-          </div>
+          <input 
+            className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 h-[45px] relative gap-2.5 pl-[17px] pr-2.5 py-2.5 rounded bg-[#f8f9fc]"
+            placeholder="Meha Chad"
+            />
         </div>
-        <div className="flex-grow-0 flex-shrink-0 w-[400px] h-6 relative">
-          <div className="w-[400px] h-6 absolute left-[-1px] top-[-1px]" />
-        </div>
-        <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[400px] relative gap-2">
+        {/* Password */}
+        <div className="flex mt-6 flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[400px] relative gap-2">
           <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-left text-[#4f637d]">
             Password
           </p>
           <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 h-[45px] relative gap-2.5 pl-[17px] pr-2.5 py-2.5 rounded bg-[#f8f9fc]">
-            <p className="flex-grow w-[347px] text-base text-left text-[#c3cad5]">Enter password</p>
+            <input 
+            className="flex-grow w-[347px] text-base text-left"
+            placeholder="Enter password"
+            type="password"
+            />
             <div className="flex flex-col justify-center items-center flex-grow-0 flex-shrink-0 relative gap-2">
               <svg
                 width={16}
@@ -148,26 +159,27 @@ function LoginStartForm () {
             </div>
           </div>
         </div>
-        <div className="flex-grow-0 flex-shrink-0 w-[400px] h-8 relative">
-          <div className="w-[400px] h-8 absolute left-[-1px] top-[-1px]" />
-        </div>
-        <div className="flex justify-center items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2.5 py-[11px] rounded-lg bg-[#32abf2]">
+      </div>
+      {/* Create Acc Button */}
+      <button 
+        type="button" 
+        onClick={validateData} 
+        id="createAccButton" 
+        className="flex mt-8 justify-center items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2.5 py-[11px] rounded-lg bg-[#32abf2]"
+        >
           <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-center text-white">
             Create account
           </p>
-        </div>
-        <div className="flex-grow-0 flex-shrink-0 w-[400px] h-4 relative">
-          <div className="w-[400px] h-4 absolute left-[-1px] top-[-1px]" />
-        </div>
-        <p className="flex-grow-0 flex-shrink-0 text-xs text-center">
+        </button>
+        {/* login */}
+        <p className="flex-grow-0 mt-4 flex-shrink-0 text-xs text-center">
           <span className="flex-grow-0 flex-shrink-0 text-xs text-center text-[#4f637d]">
             Already have an account?{" "}
           </span>
           <span className="flex-grow-0 flex-shrink-0 text-xs text-center text-[#32abf2]">Login</span>
         </p>
-      </div>
-    </div>
+    </form>
   )
 }
 
-export default LoginStartForm
+export default SignupStartForm
