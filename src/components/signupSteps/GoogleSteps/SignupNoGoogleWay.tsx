@@ -1,12 +1,20 @@
+import { useState } from "react";
+import ResponsiveRecived from "../SingupResponsiveRecived";
+
 interface FormFill {
   getBack: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SignupNoShopifyWay: React.FC<FormFill> = ({ getBack }) => {
+const SignupNoGoogleWay: React.FC<FormFill> = ({ getBack }) => {
   const getBackFunc = () => {
     getBack(true);
   };
-  return (
+  const [response, setRespone] = useState(false)
+
+  const submitResponse = () => {
+    setRespone(true)
+  }
+  return !response ? (
     <form
       className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 relative gap-0.5 px-10 py-[43px] rounded-lg bg-white"
       style={{ boxShadow: "0px 5px 20px 0 rgba(108,117,139,0.2)" }}
@@ -82,11 +90,10 @@ const SignupNoShopifyWay: React.FC<FormFill> = ({ getBack }) => {
         </div>
       </div>
       <p className="mt-6 flex-grow-0 flex-shrink-0 w-[400px] text-2xl font-semibold text-left text-[#134267]">
-        Don’t use Shopify?
+        Don’t use Gmail?
       </p>
       <p className="self-stretch mt-4 flex-grow-0 flex-shrink-0 w-[400px] text-sm text-left text-[#4f637d]">
-        Chad Beta is currently only available on Shopify. We’ll send you an
-        email when Chad becomes available on your platform.
+        Chad Beta is currently only integrated with Gmail. We’ll send you an email when Chad becomes compatible with your support ticket platform.
       </p>
 
       <div className="flex mt-8 flex-col justify-start items-center flex-grow-0 flex-shrink-0 relative bg-white">
@@ -101,8 +108,8 @@ const SignupNoShopifyWay: React.FC<FormFill> = ({ getBack }) => {
       </div>
 
       <button
+        onClick={submitResponse}
         type="button"
-        id="createAccButton"
         className="flex mt-8 justify-center items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2.5 py-[11px] rounded-lg bg-[#32abf2] hover:bg-[#0D3251] transition-colors"
       >
         <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-center text-white">
@@ -112,7 +119,7 @@ const SignupNoShopifyWay: React.FC<FormFill> = ({ getBack }) => {
 
       <p className="flex-grow-0 mt-4 flex-shrink-0 text-xs text-center">
         <span className="flex-grow-0 flex-shrink-0 text-xs text-center text-[#4f637d]">
-          Actually use Shopify?{" "}
+          Actually use Gmail?{" "}
           <button
             className="flex-grow-0 flex-shrink-0 text-xs text-center text-[#32abf2]"
             onClick={getBackFunc}
@@ -122,7 +129,10 @@ const SignupNoShopifyWay: React.FC<FormFill> = ({ getBack }) => {
         </span>
       </p>
     </form>
-  );
+  ) : 
+  (
+    <ResponsiveRecived />
+  )
 };
 
-export default SignupNoShopifyWay;
+export default SignupNoGoogleWay;

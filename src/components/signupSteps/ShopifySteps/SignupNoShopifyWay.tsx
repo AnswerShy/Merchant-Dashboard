@@ -1,27 +1,25 @@
 import { useState } from "react";
-import SignupNoShopifyWay from "./SignupNoShopifyWay";
+import ResponsiveRecived from "../SingupResponsiveRecived";
 
 interface FormFill {
-  setShopifyConnectionFunc: (back?: boolean) => void;
+  getBack: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SignupShopifyConnecting: React.FC<FormFill> = ({
-  setShopifyConnectionFunc,
-}) => {
-  const setShopifyNextStep = () => {
-    setShopifyConnectionFunc(false);
+const SignupNoShopifyWay: React.FC<FormFill> = ({ getBack }) => {
+  const getBackFunc = () => {
+    getBack(true);
   };
-  const [amIUseShopify, setAmIUseShopify] = useState(true)
+  const [response, setRespone] = useState(false)
 
-  const noShopify = () => {
-    setAmIUseShopify(false)
+  const submitResponse = () => {
+    setRespone(true)
   }
-   
-  return amIUseShopify ? (
+  return !response ? (
     <form
-      className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-[480px] h-[617px] relative px-10 py-16 rounded-lg bg-white"
+      className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 relative gap-0.5 px-10 py-[43px] rounded-lg bg-white"
       style={{ boxShadow: "0px 5px 20px 0 rgba(108,117,139,0.2)" }}
     >
+      {/* Logo */}
       <div className="flex-grow-0 flex-shrink-0 w-[400px] h-8 relative">
         <div className="flex justify-center items-start absolute left-0 top-0 gap-0.5">
           <svg
@@ -91,64 +89,51 @@ const SignupShopifyConnecting: React.FC<FormFill> = ({
           </p>
         </div>
       </div>
-      <p className="self-stretch mt-6 flex-grow-0 flex-shrink-0 w-[400px] text-2xl font-semibold text-left text-[#134267]">
-        Connect your Shopify store
+      <p className="mt-6 flex-grow-0 flex-shrink-0 w-[400px] text-2xl font-semibold text-left text-[#134267]">
+        Don’t use Shopify?
       </p>
       <p className="self-stretch mt-4 flex-grow-0 flex-shrink-0 w-[400px] text-sm text-left text-[#4f637d]">
-        Installs the Chad widget in your Shopify store and sets it up to display
-        your customers’ order information and self-serve options.
+        Chad Beta is currently only available on Shopify. We’ll send you an
+        email when Chad becomes available on your platform.
       </p>
+
       <div className="flex mt-8 flex-col justify-start items-center flex-grow-0 flex-shrink-0 relative bg-white">
         <div className="flex mt-6 flex-col  justify-start items-start flex-grow-0 flex-shrink-0 w-[400px] relative gap-2">
-          <p className="self-stretch flex-grow-0 flex-shrink-0 w-[310px] text-sm font-medium text-left text-[#134267]">
-            Track orders and shipping
-          </p>
           <p className="flex-grow-0 flex-shrink-0 w-[310px] text-xs text-left text-[#4f637d]">
-            Global coverage with 600+ couriers supported
+            Platform
           </p>
-        </div>
-        <div className="flex mt-6 flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[400px] relative gap-2">
-          <p className="self-stretch flex-grow-0 flex-shrink-0 w-[310px] text-sm font-medium text-left text-[#134267]">
-            Manage orders
-          </p>
-          <p className="flex-grow-0 flex-shrink-0 w-[310px] text-xs text-left text-[#4f637d]">
-            Allow customers to track, return, exchange, or report problems with
-            their orders
-          </p>
-        </div>
-        <div className="flex mt-6 flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[400px] relative gap-2">
-          <p className="self-stretch flex-grow-0 flex-shrink-0 w-[310px] text-sm font-medium text-left text-[#134267]">
-            Process returns and exchanges
-          </p>
-          <p className="flex-grow-0 flex-shrink-0 w-[310px] text-xs text-left text-[#4f637d]">
-            Automatically checks your store policy and existing inventory before
-            resolving or escalating each request
-          </p>
+          <select className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 h-[45px] relative gap-2.5 pl-[17px] pr-2.5 py-2.5 rounded bg-[#f8f9fc]">
+            <option value="">Select platform</option>
+          </select>
         </div>
       </div>
+
       <button
-        onClick={setShopifyNextStep}
+        onClick={submitResponse}
         type="button"
-        id="createAccButton"
         className="flex mt-8 justify-center items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2.5 py-[11px] rounded-lg bg-[#32abf2] hover:bg-[#0D3251] transition-colors"
       >
         <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-center text-white">
-          Connect store
+          Submit
         </p>
       </button>
 
       <p className="flex-grow-0 mt-4 flex-shrink-0 text-xs text-center">
-        <button 
-          onClick={noShopify}
-          className="flex-grow-0 flex-shrink-0 text-xs text-center text-[#4f637d]">
-          I don’t use Shopify
-        </button>
+        <span className="flex-grow-0 flex-shrink-0 text-xs text-center text-[#4f637d]">
+          Actually use Shopify?{" "}
+          <button
+            className="flex-grow-0 flex-shrink-0 text-xs text-center text-[#32abf2]"
+            onClick={getBackFunc}
+          >
+            Connect
+          </button>
+        </span>
       </p>
     </form>
-  ) :
+  ) : 
   (
-    <SignupNoShopifyWay getBack={setAmIUseShopify} />
+    <ResponsiveRecived />
   )
 };
 
-export default SignupShopifyConnecting;
+export default SignupNoShopifyWay;

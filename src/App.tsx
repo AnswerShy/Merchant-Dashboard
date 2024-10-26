@@ -4,9 +4,10 @@ import './App.css'
 import SignupProgress from './components/SignupProgressIndicator'
 import SignupStartForm from './components/signupSteps/SignupStartForm';
 import SignupShopifyMainStep from './components/signupSteps/ShopifySteps/SignupShopifyMainStep';
+import SignupGoogleMainStep from './components/signupSteps/GoogleSteps/SignupGoogleMainStep';
 
 function App() {
-  const [currentStep, setCurrentStep] = useState(0)
+  const [currentStep, setCurrentStep] = useState(2)
   const [isFormFull, setIsFormFull] = useState(false)
   const steps = ['Welcome', 'Connect your Shopify store', 'Connect your customer support email', 'Done'];
   const [isShopifyConnected, setIsShopifyConnected] = useState<boolean>(false)
@@ -18,7 +19,8 @@ function App() {
 
   const signupStep = [
     <SignupStartForm onFill={setIsFormFull} nextStep={handleNextStep} />,
-    <SignupShopifyMainStep onFill={setIsFormFull} nextStep={handleNextStep} isShopifyWasConnectedPrev={shopifyConnectedPrev} isShopifyConnected={isShopifyConnected} setShopifyConnection={setIsShopifyConnected}/>
+    <SignupShopifyMainStep onFill={setIsFormFull} nextStep={handleNextStep} isShopifyWasConnectedPrev={shopifyConnectedPrev} isShopifyConnected={isShopifyConnected} setShopifyConnection={setIsShopifyConnected}/>,
+    <SignupGoogleMainStep />
   ]
   
   return (

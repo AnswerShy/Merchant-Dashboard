@@ -1,25 +1,13 @@
-import { useState } from "react";
-import SignupNoShopifyWay from "./SignupNoShopifyWay";
-
 interface FormFill {
-  setShopifyConnectionFunc: (back?: boolean) => void;
+  getBack: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
-const SignupShopifyConnecting: React.FC<FormFill> = ({
-  setShopifyConnectionFunc,
-}) => {
-  const setShopifyNextStep = () => {
-    setShopifyConnectionFunc(false);
+const SignupGoogleWay: React.FC<FormFill> = ({ getBack }) => {
+  const getBakcFunc = () => {
+    getBack(false);
   };
-  const [amIUseShopify, setAmIUseShopify] = useState(true)
-
-  const noShopify = () => {
-    setAmIUseShopify(false)
-  }
-   
-  return amIUseShopify ? (
+  return (
     <form
-      className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-[480px] h-[617px] relative px-10 py-16 rounded-lg bg-white"
+      className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-[480px] h-fit relative px-10 py-16 rounded-lg bg-white"
       style={{ boxShadow: "0px 5px 20px 0 rgba(108,117,139,0.2)" }}
     >
       <div className="flex-grow-0 flex-shrink-0 w-[400px] h-8 relative">
@@ -92,63 +80,89 @@ const SignupShopifyConnecting: React.FC<FormFill> = ({
         </div>
       </div>
       <p className="self-stretch mt-6 flex-grow-0 flex-shrink-0 w-[400px] text-2xl font-semibold text-left text-[#134267]">
-        Connect your Shopify store
+        Connect your customer support email
       </p>
       <p className="self-stretch mt-4 flex-grow-0 flex-shrink-0 w-[400px] text-sm text-left text-[#4f637d]">
-        Installs the Chad widget in your Shopify store and sets it up to display
-        your customers’ order information and self-serve options.
+        Allows Chad to send automated responses on your behalf from your usual
+        support mailbox
       </p>
       <div className="flex mt-8 flex-col justify-start items-center flex-grow-0 flex-shrink-0 relative bg-white">
         <div className="flex mt-6 flex-col  justify-start items-start flex-grow-0 flex-shrink-0 w-[400px] relative gap-2">
           <p className="self-stretch flex-grow-0 flex-shrink-0 w-[310px] text-sm font-medium text-left text-[#134267]">
-            Track orders and shipping
+            Contextual responses
           </p>
           <p className="flex-grow-0 flex-shrink-0 w-[310px] text-xs text-left text-[#4f637d]">
-            Global coverage with 600+ couriers supported
+            Custom responses to any support situation from “where’s my stuff?”
+            to “I want a refund”
           </p>
         </div>
         <div className="flex mt-6 flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[400px] relative gap-2">
           <p className="self-stretch flex-grow-0 flex-shrink-0 w-[310px] text-sm font-medium text-left text-[#134267]">
-            Manage orders
+            Reply from anywhere
           </p>
           <p className="flex-grow-0 flex-shrink-0 w-[310px] text-xs text-left text-[#4f637d]">
-            Allow customers to track, return, exchange, or report problems with
-            their orders
+            Respond to your customers via email or Chad chat—it’s all saved in
+            the same thread
           </p>
         </div>
         <div className="flex mt-6 flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[400px] relative gap-2">
           <p className="self-stretch flex-grow-0 flex-shrink-0 w-[310px] text-sm font-medium text-left text-[#134267]">
-            Process returns and exchanges
+            Categorical inbox tags
           </p>
           <p className="flex-grow-0 flex-shrink-0 w-[310px] text-xs text-left text-[#4f637d]">
-            Automatically checks your store policy and existing inventory before
-            resolving or escalating each request
+            Tags your emails by category so you know what to expect before even
+            opening an email
           </p>
         </div>
       </div>
-      <button
-        onClick={setShopifyNextStep}
-        type="button"
-        id="createAccButton"
-        className="flex mt-8 justify-center items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2.5 py-[11px] rounded-lg bg-[#32abf2] hover:bg-[#0D3251] transition-colors"
-      >
-        <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-center text-white">
-          Connect store
+
+
+      <button className="flex mt-9 justify-center items-center flex-grow-0 flex-shrink-0 relative gap-24 pl-px pr-24 py-px rounded-sm bg-[#5383ec]">
+        <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-12 relative gap-2.5 px-3.5 py-[15px] rounded-[1px] bg-white">
+          <svg
+            width={18}
+            height={18}
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="flex-grow-0 flex-shrink-0 w-[18px] h-[18px] relative"
+            preserveAspectRatio="xMidYMid meet"
+          >
+            <g clip-path="url(#clip0_2499_50436)">
+              <path
+                d="M17.8246 9.20731C17.8246 8.59552 17.775 7.98041 17.6691 7.37854H9.18005V10.8443H14.0414C13.8396 11.962 13.1915 12.9508 12.2423 13.5792V15.8279H15.1426C16.8457 14.2604 17.8246 11.9455 17.8246 9.20731Z"
+                fill="#4285F4"
+              />
+              <path
+                d="M9.17995 18.0006C11.6073 18.0006 13.6543 17.2036 15.1458 15.8279L12.2455 13.5792C11.4386 14.1281 10.3969 14.439 9.18326 14.439C6.83529 14.439 4.84448 12.8549 4.13016 10.7252H1.13733V13.0434C2.66516 16.0826 5.77705 18.0006 9.17995 18.0006Z"
+                fill="#34A853"
+              />
+              <path
+                d="M4.12696 10.7252C3.74996 9.60739 3.74996 8.39703 4.12696 7.27927V4.96106H1.13743C-0.139072 7.50414 -0.139072 10.5003 1.13743 13.0434L4.12696 10.7252Z"
+                fill="#FBBC04"
+              />
+              <path
+                d="M9.17995 3.56224C10.4631 3.5424 11.7032 4.02523 12.6325 4.9115L15.202 2.34196C13.575 0.814129 11.4155 -0.0258495 9.17995 0.000606499C5.77705 0.000606499 2.66516 1.91867 1.13733 4.96111L4.12686 7.27931C4.83786 5.1463 6.83198 3.56224 9.17995 3.56224Z"
+                fill="#EA4335"
+              />
+            </g>
+          </svg>
+        </div>
+        <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-left text-white">
+          Connect Gmail account
         </p>
       </button>
 
       <p className="flex-grow-0 mt-4 flex-shrink-0 text-xs text-center">
-        <button 
-          onClick={noShopify}
-          className="flex-grow-0 flex-shrink-0 text-xs text-center text-[#4f637d]">
-          I don’t use Shopify
+        <button
+          onClick={getBakcFunc}
+          className="flex-grow-0 flex-shrink-0 text-xs text-center text-[#4f637d]"
+        >
+          I don’t use Gmail
         </button>
       </p>
     </form>
-  ) :
-  (
-    <SignupNoShopifyWay getBack={setAmIUseShopify} />
-  )
+  );
 };
 
-export default SignupShopifyConnecting;
+export default SignupGoogleWay;
