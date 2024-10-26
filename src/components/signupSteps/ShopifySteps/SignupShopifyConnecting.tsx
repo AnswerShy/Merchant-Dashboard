@@ -1,62 +1,27 @@
-import React, { useEffect } from "react";
+import { useState } from "react";
+import SignupNoShopifyWay from "../NoShopifySteps/SignupNoShopifyWay";
 
 interface FormFill {
-  onFill: (isFull: boolean) => void;
-  nextStep: () => void;
+  setShopifyConnectionFunc: (back?: boolean) => void;
 }
 
-const SignupStartForm: React.FC<FormFill> = ({ onFill, nextStep }) => {
-  useEffect(() => {
-    document.querySelectorAll("input").forEach(el => {
-      el.addEventListener("change", () => {
-        onFill(true)
-      })
-    })
-  }, [])
+const SignupShopifyConnecting: React.FC<FormFill> = ({
+  setShopifyConnectionFunc,
+}) => {
+  const setShopifyNextStep = () => {
+    setShopifyConnectionFunc(false);
+  };
+  const [amIUseShopify, setAmIUseShopify] = useState(true)
 
-  const validateData = () => {
-    const inputList: {[key: string]: HTMLInputElement | null } = {
-      email: document.querySelector("#user-email") as HTMLInputElement | null,
-      name: document.querySelector("#user-name") as HTMLInputElement | null,
-      password: document.querySelector("#user-password") as HTMLInputElement | null,
-    }
-    if (!inputList.email?.value || inputList.email.value.length < 6) {
-      inputList.email?.classList.add("border-2", "border-rose-500")
-      console.log(inputList.email?.classList)
-    }
-    else if (!inputList.name?.value || inputList.name.value.length < 6) {
-      inputList.name?.classList.add("border-2", "border-rose-500")
-      console.log(inputList.name?.classList)
-    }
-    else {
-      document.querySelector("#createAccButton_loading")?.classList.remove("hidden")
-      document.querySelector("#createAccButton_text")?.classList.add("hidden")
-      console.log(inputList.email?.value, inputList.name?.value, inputList.password?.value)
-      fetch('https://reqres.in/api/users', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          email: inputList.email?.value,
-          name: inputList.name?.value,
-          password: inputList.password?.value
-        })
-      })
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .then(() => {
-        onFill(false)
-        nextStep()
-      })
-    }
+  const noShopify = () => {
+    setAmIUseShopify(false)
   }
-  return (
+   
+  return amIUseShopify ? (
     <form
-      className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-[480px] h-[700px] relative px-10 py-16 rounded-lg bg-white"
+      className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-[480px] h-[617px] relative px-10 py-16 rounded-lg bg-white"
       style={{ boxShadow: "0px 5px 20px 0 rgba(108,117,139,0.2)" }}
     >
-      {/* Logo */}
       <div className="flex-grow-0 flex-shrink-0 w-[400px] h-8 relative">
         <div className="flex justify-center items-start absolute left-0 top-0 gap-0.5">
           <svg
@@ -121,105 +86,69 @@ const SignupStartForm: React.FC<FormFill> = ({ onFill, nextStep }) => {
               fill="#79292A"
             />
           </svg>
-          <p className="flex-grow-0 flex-shrink-0 text-2xl font-bold text-left text-[#20496c]">Chad</p>
+          <p className="flex-grow-0 flex-shrink-0 text-2xl font-bold text-left text-[#20496c]">
+            Chad
+          </p>
         </div>
       </div>
       <p className="self-stretch mt-6 flex-grow-0 flex-shrink-0 w-[400px] text-2xl font-semibold text-left text-[#134267]">
-        Welcome to Chad
+        Connect your Shopify store
       </p>
       <p className="self-stretch mt-4 flex-grow-0 flex-shrink-0 w-[400px] text-sm text-left text-[#4f637d]">
-        Go live in 10 minutes! Our self-service widget empowers your customers to manage orders and
-        track shipments 24/7 without driving you crazy.
+        Installs the Chad widget in your Shopify store and sets it up to display
+        your customers’ order information and self-serve options.
       </p>
       <div className="flex mt-8 flex-col justify-start items-center flex-grow-0 flex-shrink-0 relative bg-white">
-        {/* Email */}
         <div className="flex mt-6 flex-col  justify-start items-start flex-grow-0 flex-shrink-0 w-[400px] relative gap-2">
-          <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-left text-[#4f637d]">
-            Email
+          <p className="self-stretch flex-grow-0 flex-shrink-0 w-[310px] text-sm font-medium text-left text-[#134267]">
+            Track orders and shipping
           </p>
-          <input
-            id="user-email" 
-            className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 h-[45px] relative gap-2.5 pl-[17px] pr-2.5 py-2.5 rounded bg-[#f8f9fc]"
-            placeholder="megachad@trychad.com"
-            />
+          <p className="flex-grow-0 flex-shrink-0 w-[310px] text-xs text-left text-[#4f637d]">
+            Global coverage with 600+ couriers supported
+          </p>
         </div>
-        {/* Name */}
         <div className="flex mt-6 flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[400px] relative gap-2">
-          <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-left text-[#4f637d]">
-            Your name
+          <p className="self-stretch flex-grow-0 flex-shrink-0 w-[310px] text-sm font-medium text-left text-[#134267]">
+            Manage orders
           </p>
-          <input
-            id="user-name"  
-            className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 h-[45px] relative gap-2.5 pl-[17px] pr-2.5 py-2.5 rounded bg-[#f8f9fc]"
-            placeholder="Meha Chad"
-            />
+          <p className="flex-grow-0 flex-shrink-0 w-[310px] text-xs text-left text-[#4f637d]">
+            Allow customers to track, return, exchange, or report problems with
+            their orders
+          </p>
         </div>
-        {/* Password */}
         <div className="flex mt-6 flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[400px] relative gap-2">
-          <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-left text-[#4f637d]">
-            Password
+          <p className="self-stretch flex-grow-0 flex-shrink-0 w-[310px] text-sm font-medium text-left text-[#134267]">
+            Process returns and exchanges
           </p>
-          <div id="user-password"  className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 h-[45px] relative gap-2.5 pl-[17px] pr-2.5 py-2.5 rounded bg-[#f8f9fc]">
-            <input
-              className="flex-grow w-[347px] text-base text-left"
-              placeholder="Enter password"
-              type="password"
-            />
-            <div className="flex flex-col justify-center items-center flex-grow-0 flex-shrink-0 relative gap-2">
-              <svg
-                width={16}
-                height={17}
-                viewBox="0 0 16 17"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="flex-grow-0 flex-shrink-0 w-4 h-4 relative"
-                preserveAspectRatio="xMidYMid meet"
-              >
-                <g clip-path="url(#clip0_5501_5822)">
-                  <path
-                    d="M6.60008 3.32664C7.05897 3.21923 7.52879 3.16554 8.00008 3.16664C12.6667 3.16664 15.3334 8.49998 15.3334 8.49998C14.9287 9.25705 14.4461 9.9698 13.8934 10.6266M9.41341 9.91331C9.23032 10.1098 9.00951 10.2674 8.76418 10.3767C8.51885 10.486 8.25402 10.5448 7.98547 10.5496C7.71693 10.5543 7.45019 10.5049 7.20115 10.4043C6.95212 10.3037 6.7259 10.154 6.53598 9.96408C6.34606 9.77416 6.19634 9.54794 6.09575 9.2989C5.99516 9.04987 5.94577 8.78312 5.9505 8.51458C5.95524 8.24604 6.01402 7.98121 6.12333 7.73587C6.23264 7.49054 6.39025 7.26974 6.58675 7.08664M11.9601 12.46C10.8205 13.3286 9.43282 13.8099 8.00008 13.8333C3.33341 13.8333 0.666748 8.49998 0.666748 8.49998C1.49601 6.95457 2.64617 5.60438 4.04008 4.53998L11.9601 12.46Z"
-                    stroke="#4F637D"
-                    stroke-width="1.33"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M0.666748 1.16663L15.3334 15.8333"
-                    stroke="#4F637D"
-                    stroke-width="1.33"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </g>
-              </svg>
-            </div>
-          </div>
+          <p className="flex-grow-0 flex-shrink-0 w-[310px] text-xs text-left text-[#4f637d]">
+            Automatically checks your store policy and existing inventory before
+            resolving or escalating each request
+          </p>
         </div>
       </div>
-      {/* Create Acc Button */}
-      <button 
-        type="button" 
-        onClick={validateData} 
-        id="createAccButton" 
-        className=" flex mt-8 justify-center items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2.5 py-[11px] rounded-lg bg-[#32abf2] hover:bg-[#0D3251] transition-colors"
-        >
-          <svg id="createAccButton_loading" className="hidden animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-          </svg>
-          <p id="createAccButton_text" className="flex-grow-0 flex-shrink-0 text-sm font-medium text-center text-white">
-            Create account
-          </p>
-        </button>
-        {/* login */}
-        <p className="flex-grow-0 mt-4 flex-shrink-0 text-xs text-center">
-          <span className="flex-grow-0 flex-shrink-0 text-xs text-center text-[#4f637d]">
-            Already have an account?{" "}
-          </span>
-          <span className="flex-grow-0 flex-shrink-0 text-xs text-center text-[#32abf2]">Login</span>
+      <button
+        onClick={setShopifyNextStep}
+        type="button"
+        id="createAccButton"
+        className="flex mt-8 justify-center items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2.5 py-[11px] rounded-lg bg-[#32abf2] hover:bg-[#0D3251] transition-colors"
+      >
+        <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-center text-white">
+          Connect store
         </p>
-    </form>
-  )
-}
+      </button>
 
-export default SignupStartForm
+      <p className="flex-grow-0 mt-4 flex-shrink-0 text-xs text-center">
+        <button 
+          onClick={noShopify}
+          className="flex-grow-0 flex-shrink-0 text-xs text-center text-[#4f637d]">
+          I don’t use Shopify
+        </button>
+      </p>
+    </form>
+  ) :
+  (
+    <SignupNoShopifyWay getBack={setAmIUseShopify} />
+  )
+};
+
+export default SignupShopifyConnecting;

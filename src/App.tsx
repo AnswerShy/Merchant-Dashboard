@@ -3,16 +3,24 @@ import './App.css'
 
 import SignupProgress from './components/SignupProgressIndicator'
 import SignupStartForm from './components/signupSteps/SignupStartForm';
+import SignupShopifyMainStep from './components/signupSteps/ShopifySteps/SignupShopifyMainStep';
 
 function App() {
   const [currentStep, setCurrentStep] = useState(0)
   const [isFormFull, setIsFormFull] = useState(false)
   const steps = ['Welcome', 'Connect your Shopify store', 'Connect your customer support email', 'Done'];
-  const isShopifyConnected = false
+  const [isShopifyConnected, setIsShopifyConnected] = useState<boolean>(false)
+  const shopifyConnectedPrev = false
 
   const handleNextStep = () => {
     setCurrentStep(currentStep + 1);
   };
+
+  const signupStep = [
+    <SignupStartForm onFill={setIsFormFull} nextStep={handleNextStep} />,
+    <SignupShopifyMainStep onFill={setIsFormFull} nextStep={handleNextStep} isShopifyWasConnectedPrev={shopifyConnectedPrev} isShopifyConnected={isShopifyConnected} setShopifyConnection={setIsShopifyConnected}/>
+  ]
+  
   return (
     <section className='flex'>
       <aside className="container flex justify-center items-center bg-custom-gradient h-screen w-1/3">
@@ -21,7 +29,7 @@ function App() {
         </div>
       </aside>
       <main className='container flex w-2/3 h-screen justify-center items-center'>
-        <SignupStartForm onFill={setIsFormFull} nextStep={handleNextStep} />
+        {signupStep[currentStep]}
       </main>
     </section>
   )
