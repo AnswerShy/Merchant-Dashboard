@@ -2,10 +2,14 @@ import { useState } from "react";
 import SignupNoGoogleWay from "./SignupNoGoogleWay";
 import SignupGoogleWay from "./SignupGoogleWay";
 
-const SignupGoogleMainStep= () => {
+interface FormFill {
+    nextStep: () => void;
+}
+  
+const SignupGoogleMainStep: React.FC<FormFill> = ({ nextStep }) => {
     const [amIUseGoogle, setAmIUseGoogle] = useState(true)
     return amIUseGoogle ? (
-        <SignupGoogleWay getBack={setAmIUseGoogle}/>
+        <SignupGoogleWay getBack={setAmIUseGoogle} nextStep={nextStep}/>
     )
     :
     (

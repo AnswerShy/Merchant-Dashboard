@@ -1,10 +1,27 @@
 interface FormFill {
   getBack: React.Dispatch<React.SetStateAction<boolean>>;
+  nextStep: () => void;
 }
-const SignupGoogleWay: React.FC<FormFill> = ({ getBack }) => {
+const SignupGoogleWay: React.FC<FormFill> = ({ getBack, nextStep }) => {
   const getBakcFunc = () => {
     getBack(false);
   };
+  const googleCheck = () => {
+    fetch('https://reqres.in/api/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: "Some Email",
+      })
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .then(() => {
+      nextStep()
+    })
+  }
   return (
     <form
       className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-[480px] h-fit relative px-10 py-16 rounded-lg bg-white"
@@ -79,7 +96,7 @@ const SignupGoogleWay: React.FC<FormFill> = ({ getBack }) => {
           </p>
         </div>
       </div>
-      <p className="self-stretch mt-6 flex-grow-0 flex-shrink-0 w-[400px] text-2xl font-semibold text-left text-[#134267]">
+      <p className="self-stretch flex-grow-0 flex-shrink-0 w-[400px] text-2xl font-semibold text-left text-[#134267] ">
         Connect your customer support email
       </p>
       <p className="self-stretch mt-4 flex-grow-0 flex-shrink-0 w-[400px] text-sm text-left text-[#4f637d]">
@@ -117,7 +134,10 @@ const SignupGoogleWay: React.FC<FormFill> = ({ getBack }) => {
       </div>
 
 
-      <button className="flex mt-9 justify-center items-center flex-grow-0 flex-shrink-0 relative gap-24 pl-px pr-24 py-px rounded-sm bg-[#5383ec]">
+      <button
+        type="button"
+        onClick={googleCheck}
+        className="flex mt-9 justify-center items-center flex-grow-0 flex-shrink-0 relative gap-24 pl-px pr-24 py-px rounded-sm bg-[#5383ec]">
         <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-12 relative gap-2.5 px-3.5 py-[15px] rounded-[1px] bg-white">
           <svg
             width={18}
