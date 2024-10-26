@@ -6,8 +6,8 @@ interface FormFill {
     onFill: (isFull: boolean) => void;
 }
 
-import SignupShopifyConnected from "./SignupShopifyConnected";
-import SignupShopifyConnecting from "./SignupShopifyConnecting";
+import SignupShopifyConnected from "./Options/SignupShopifyConnected";
+import SignupShopifyConnecting from "./Options/SignupShopifyConnecting";
 
 const SignupShopifyMainStep: React.FC<FormFill> = ({
     isShopifyWasConnectedPrev,

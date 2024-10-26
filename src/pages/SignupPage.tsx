@@ -10,7 +10,7 @@ import SignupGoogleMainStep from '../components/signupSteps/GoogleSteps/SignupGo
 function SignupPage() {
   const navigate = useNavigate();
 
-  const [currentStep, setCurrentStep] = useState(2)
+  const [currentStep, setCurrentStep] = useState(0)
   const [isFormFull, setIsFormFull] = useState(false)
   const steps = ['Welcome', 'Connect your Shopify store', 'Connect your customer support email', 'Done'];
   const [isShopifyConnected, setIsShopifyConnected] = useState<boolean>(false)
@@ -21,7 +21,6 @@ function SignupPage() {
   };
 
   useEffect(() => {
-    console.log(currentStep)
     if(currentStep == 3) {
       navigate('/');
     }

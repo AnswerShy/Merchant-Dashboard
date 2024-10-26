@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ResponsiveRecived from "../SingupResponsiveRecived";
+import ResponsiveRecived from "../../SingupResponsiveRecived";
 
 interface FormFill {
   getBack: React.Dispatch<React.SetStateAction<boolean>>;

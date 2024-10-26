@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import valideController from "../../controllers/startFormDataValidate";
 
 interface FormFill {
   onFill: (isFull: boolean) => void;
@@ -6,10 +7,24 @@ interface FormFill {
 }
 
 const SignupStartForm: React.FC<FormFill> = ({ onFill, nextStep }) => {
+  const allInputsFill = (elemets: NodeListOf<HTMLElement>) => {
+    let allField: boolean = true
+
+    elemets.forEach(element => {
+      if(element.value?.length < 5) {
+        allField = false
+      } 
+    })
+
+    if(allField) {
+      onFill(true)
+    }
+  }
+
   useEffect(() => {
-    document.querySelectorAll("input").forEach(el => {
-      el.addEventListener("change", () => {
-        onFill(true)
+    document.querySelectorAll("input").forEach(input => {
+      input.addEventListener("change", () => {
+        allInputsFill(document.querySelectorAll("input"))
       })
     })
   }, [])
@@ -20,37 +35,30 @@ const SignupStartForm: React.FC<FormFill> = ({ onFill, nextStep }) => {
       name: document.querySelector("#user-name") as HTMLInputElement | null,
       password: document.querySelector("#user-password") as HTMLInputElement | null,
     }
-    if (!inputList.email?.value || inputList.email.value.length < 6) {
-      inputList.email?.classList.add("border-2", "border-rose-500")
-      console.log(inputList.email?.classList)
-    }
-    else if (!inputList.name?.value || inputList.name.value.length < 6) {
-      inputList.name?.classList.add("border-2", "border-rose-500")
-      console.log(inputList.name?.classList)
-    }
-    else {
-      document.querySelector("#createAccButton_loading")?.classList.remove("hidden")
-      document.querySelector("#createAccButton_text")?.classList.add("hidden")
-      console.log(inputList.email?.value, inputList.name?.value, inputList.password?.value)
-      fetch('https://reqres.in/api/users', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          email: inputList.email?.value,
-          name: inputList.name?.value,
-          password: inputList.password?.value
-        })
+
+    document.getElementById("createAccButton_loading")?.classList.remove("hidden")
+    document.getElementById("createAccButton_text")?.classList.add("hidden")
+
+    valideController(inputList["email"]?.value, inputList["name"]?.value, inputList["password"]?.value)
+      .then(data => {
+        if(data.error) {
+          document.getElementById("createAccButton_loading")?.classList.add("hidden")
+          document.getElementById("createAccButton_text")?.classList.remove("hidden")
+          
+          data.error.forEach(e => {
+            document.getElementById(`user-${e}`)?.classList.add("border-2", "border-rose-500")
+          })
+        }
+        else {
+          document.getElementById("createAccButton_loading")?.classList.add("hidden")
+          document.getElementById("createAccButton_text")?.classList.remove("hidden")
+          onFill(false)
+          nextStep()
+        }
       })
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .then(() => {
-        onFill(false)
-        nextStep()
-      })
-    }
+
   }
+
   return (
     <form
       className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-[480px] h-[700px] relative px-10 py-16 rounded-lg bg-white"
