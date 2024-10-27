@@ -147,7 +147,7 @@ const SignupProgress: React.FC<SignupProgressProps> = ({
             </p>
           </div>
         </div>
-        <p className="self-stretch flex-grow-0 flex-shrink-0 w-[326px] text-xs text-left text-[#4f637d]">
+        <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-xs text-left text-[#4f637d]">
           step {currentStep + 1} of {steps.length}
         </p>
         <progress
@@ -174,7 +174,7 @@ const SignupProgress: React.FC<SignupProgressProps> = ({
               : index === steps.length - 1
               ? stepStatus("empty", index, true)
               : stepStatus("empty", index)}
-            <span className="w-max text-[16px]">{step}</span>
+            <span className={`w-max text-[16px] ${index <= currentStep ? "text-white" : "text-[#5d7fa3]"}`}>{step}</span>
           </div>
         ))}
         <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-[198px]">

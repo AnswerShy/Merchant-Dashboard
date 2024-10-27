@@ -3,8 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    overflow-y: hidden;
+}
 * {
-    overflow-x: hidden;
     margin: 0;
     font-family: "Inter", sans-serif;
 }
@@ -26,11 +28,11 @@ progress[value] {
 }
 
 h1 {
-    @apply self-stretch mt-4 md:mt-[24px] flex-grow-0 flex-shrink-0 w-full xl:w-[400px] text-[24px] font-semibold text-left text-[#134267];
+    @apply self-stretch mt-4 md:mt-[24px] md:w-full flex-grow-0 flex-shrink-0 w-full xl:w-[400px] text-[24px] font-semibold text-left text-[#134267];
 }
 
 h2 {
-    @apply self-stretch mt-2 md:mt-[16px] flex-grow-0 flex-shrink-0 w-full xl:w-[400px] h-fit text-[14px] text-left text-[#4f637d]
+    @apply self-stretch mt-2 md:mt-[16px] md:w-full flex-grow-0 flex-shrink-0 w-full xl:w-[400px] h-fit text-[14px] text-left text-[#4f637d]
 }
 
 /* Options */
@@ -40,7 +42,7 @@ h3 {
 }
 
 li {
-    @apply self-stretch flex-grow-0 flex-shrink-0 w-[310px] text-[14px] font-medium text-left text-[#134267]
+    @apply self-stretch flex-grow-0 flex-shrink-0 md:w-[310px] text-[14px] font-medium text-left text-[#134267]
 }
 
 ul {
@@ -74,13 +76,13 @@ li::before {
 /* Fieilds */
 
 .fields-form {
-    @apply flex mt-6 md:mt-[32px] md:mb-[32px] flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-full xl:w-[400px] relative bg-white
+    @apply flex mt-[32px] mb-[32px] flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-full xl:w-[400px] relative bg-white
 }
 .field-wrap {
     @apply flex flex-col md:mb-[24px] justify-start items-start flex-grow-0 flex-shrink-0 w-full xl:w-[400px] relative gap-2
 }
 .field {
-    @apply flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 h-[45px] relative gap-2.5 pl-[17px] pr-2.5 py-2.5 rounded bg-[#f8f9fc]
+    @apply flex min-w-[262px] justify-start items-center self-stretch flex-grow-0 flex-shrink-0 h-[45px] relative gap-2.5 pl-[17px] pr-2.5 py-2.5 rounded bg-[#f8f9fc]
 }
 label {
     @apply flex-grow-0 mb-[2px] flex-shrink-0 text-[12px] font-medium text-left text-[#4f637d]
@@ -89,7 +91,7 @@ label {
 /* Buttons */
 
 button {
-    @apply flex w-full justify-center items-center flex-grow-0 flex-shrink-0 relative gap-2.5 py-[11px] rounded-lg bg-[#32abf2] hover:bg-[#0D3251] transition-colors;
+    @apply flex w-[327px] justify-center items-center flex-grow-0 flex-shrink-0 relative gap-2.5 py-[11px] rounded-lg bg-[#32abf2] hover:bg-[#0D3251] transition-colors;
 }
 
 button p {

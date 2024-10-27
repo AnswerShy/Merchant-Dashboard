@@ -25,7 +25,7 @@ const Slider = () => {
   };
 
   return (
-    <div className="mt-[200px] flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 gap-4">
+    <div className="mt-[200px] flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 gap-4 hidden xl:flex">
       <div className="relative w-full h-full">
         {tips.map((tip, index) => (
           <Card key={index} text={tip} amI={index == activeSlide} />

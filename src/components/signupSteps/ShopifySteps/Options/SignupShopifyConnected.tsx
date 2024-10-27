@@ -13,7 +13,9 @@ const SignupShopifyConnected: React.FC<FormFill> = ({
     setShopifyConnectionFunc(true);
   };
   return (
-    <>
+    <div 
+      className="flex flex-col items-center absolute -translate-y-[120px] pt-[112px] h-full md:translate-x-0 md:relative md:-translate-y-[0px] px-[32px] py-[16px] md:px-[26px] md:py-[62px] rounded-lg bg-white"
+    >
       {/* Avatar */}
       <div className="flex-grow-0 flex-shrink-0 w-[82.5px] h-20 relative">
             <img
@@ -43,7 +45,7 @@ const SignupShopifyConnected: React.FC<FormFill> = ({
 
       {isShopifyWasConnectedPrev ? (
         <div className="flex mt-8 flex-col mb-[16px] justify-start items-center flex-grow-0 flex-shrink-0 relative bg-white">
-          <div className="flex mt-6 flex-col justify-start flex-grow-0 flex-shrink-0 w-[400px] items-center relative gap-2">
+          <div className="flex mt-6 flex-col justify-start flex-grow-0 flex-shrink-0 items-center relative gap-2">
             <p className="flex-grow-0 flex-shrink-0 text-[20px] font-semibold text-center text-[#134267]">
                 [STORE NAME]<br/>
                 already connected
@@ -52,7 +54,7 @@ const SignupShopifyConnected: React.FC<FormFill> = ({
         </div>
       ) : (
         <div className="flex mt-8 flex-col mb-[16px] justify-start items-center flex-grow-0 flex-shrink-0 relative bg-white">
-          <div className="flex mt-6 flex-col justify-start flex-grow-0 flex-shrink-0 w-[400px] items-center relative gap-2">
+          <div className="flex mt-6 flex-col justify-start flex-grow-0 flex-shrink-0 items-center relative gap-2">
             <p className="flex-grow-0 flex-shrink-0 text-[20px] font-semibold text-center text-[#134267]">
               Store connected
             </p>
@@ -84,7 +86,7 @@ const SignupShopifyConnected: React.FC<FormFill> = ({
           </a>
         </span>
       </p>
-    </>
+    </div>
   );
 };
 

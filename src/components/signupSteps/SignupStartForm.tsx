@@ -113,7 +113,7 @@ const SignupStartForm: React.FC<FormFill> = ({ onFill, nextStep }) => {
             className="field"
           >
             <input
-              className="flex-grow w-[347px] text-base text-left"
+              className="flex-grow w-2/3 text-base text-left"
               placeholder="Enter password"
               type="password"
             />

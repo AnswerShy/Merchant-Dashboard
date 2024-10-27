@@ -10,7 +10,7 @@ export default {
         form: "0px 5px 20px 0 rgba(108,117,139,0.2)"
       },
       screens: {
-        xl: "1194px",
+        xl: "1195px",
         md: "834px",
       },
       backgroundImage: {
