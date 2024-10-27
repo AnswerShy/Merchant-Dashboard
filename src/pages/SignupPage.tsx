@@ -33,14 +33,17 @@ function SignupPage() {
   ]
   
   return (
-    <section className='flex'>
-      <aside className="container flex justify-center items-center bg-custom-gradient h-screen w-1/3">
-        <div className='w-15'>
+    <section className='flex w-full flex-col xl:flex-row'>
+      <aside 
+        className="flex justify-center items-center md:bg-custom-gradient h-fit py-4 md:py-0 md:h-0 xl:h-screen w-full md:w-0  xl:w-1/3">
           <SignupProgress steps={steps} currentStep={currentStep} isShopifyConnected={isShopifyConnected} ifFormFull={isFormFull} />
-        </div>
       </aside>
-      <main className='container bg-custom-bg flex w-2/3 h-screen justify-center items-center'>
-        {signupStep[currentStep]}
+      <main className='bg-custom-bg flex h-screen justify-center items-center w-full xl:w-2/3'>
+        <form
+          className="flex md:shadow-form flex-col justify-start items-center w-full h-full md:w-fit md:h-max relative px-[32px] py-[16px] md:px-[40px] md:py-[64px] rounded-lg bg-white"
+        >
+          {signupStep[currentStep]}
+        </form>
       </main>
     </section>
   )

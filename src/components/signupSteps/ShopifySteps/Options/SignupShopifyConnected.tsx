@@ -13,10 +13,7 @@ const SignupShopifyConnected: React.FC<FormFill> = ({
     setShopifyConnectionFunc(true);
   };
   return (
-    <form
-      className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 relative px-[66px] py-[126px] rounded-lg bg-white"
-      style={{ boxShadow: "0px 5px 20px 0 rgba(108,117,139,0.2)" }}
-    >
+    <>
       {/* Avatar */}
       <div className="flex-grow-0 flex-shrink-0 w-[82.5px] h-20 relative">
             <img
@@ -45,23 +42,21 @@ const SignupShopifyConnected: React.FC<FormFill> = ({
         </div>
 
       {isShopifyWasConnectedPrev ? (
-        <div className="flex mt-8 flex-col justify-start items-center flex-grow-0 flex-shrink-0 relative bg-white">
+        <div className="flex mt-8 flex-col mb-[16px] justify-start items-center flex-grow-0 flex-shrink-0 relative bg-white">
           <div className="flex mt-6 flex-col justify-start flex-grow-0 flex-shrink-0 w-[400px] items-center relative gap-2">
-            <p className="flex-grow-0 flex-shrink-0 text-xl font-semibold text-center text-[#134267]">
-              [STORE NAME]
-            </p>
-            <p className="flex-grow-0 flex-shrink-0 text-xl font-semibold text-center text-[#134267]">
+            <p className="flex-grow-0 flex-shrink-0 text-[20px] font-semibold text-center text-[#134267]">
+                [STORE NAME]<br/>
                 already connected
             </p>
           </div>
         </div>
       ) : (
-        <div className="flex mt-8 flex-col justify-start items-center flex-grow-0 flex-shrink-0 relative bg-white">
+        <div className="flex mt-8 flex-col mb-[16px] justify-start items-center flex-grow-0 flex-shrink-0 relative bg-white">
           <div className="flex mt-6 flex-col justify-start flex-grow-0 flex-shrink-0 w-[400px] items-center relative gap-2">
-            <p className="flex-grow-0 flex-shrink-0 text-xl font-semibold text-center text-[#134267]">
+            <p className="flex-grow-0 flex-shrink-0 text-[20px] font-semibold text-center text-[#134267]">
               Store connected
             </p>
-            <p className="flex-grow-0 flex-shrink-0 w-[347px] text-sm text-center text-[#4f637d]">
+            <p className="flex-grow-0 flex-shrink-0 w-[347px] text-[14px] text-center text-[#4f637d]">
               Chad is now able to manage customer support requests for STORE-NAME.
             </p>
           </div>
@@ -72,24 +67,24 @@ const SignupShopifyConnected: React.FC<FormFill> = ({
         onClick={nextStep}
         type="button"
         id="createAccButton"
-        className="flex mt-8 justify-center items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2.5 py-[11px] rounded-lg bg-[#32abf2] hover:bg-[#0D3251] transition-colors"
       >
-        <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-center text-white">
+        <p>
           Continue
         </p>
       </button>
-      <p className="flex-grow-0 mt-4 flex-shrink-0 text-xs text-center">
-        <span className="flex-grow-0 flex-shrink-0 text-xs text-center text-[#4f637d]">
-          Wrong store?
-          <button
+
+      <p className="alt-btn-form">
+        <span className="alt-btn-text">
+          Wrong store? {" "}
+          <a
             onClick={ShopifyConnectCancel}
-            className="flex-grow-0 flex-shrink-0 text-xs text-center text-[#32abf2]"
+            className="alt-btn-link"
           >
             Connect another one
-          </button>
+          </a>
         </span>
       </p>
-    </form>
+    </>
   );
 };
 

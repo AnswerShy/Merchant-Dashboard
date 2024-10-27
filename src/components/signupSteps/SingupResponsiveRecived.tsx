@@ -1,9 +1,6 @@
 const ResponsiveRecived = () => {
   return (
-    <form
-      className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 relative px-[66px] py-[126px] rounded-lg bg-white"
-      style={{ boxShadow: "0px 5px 20px 0 rgba(108,117,139,0.2)" }}
-    >
+    <>
       <div className="flex-grow-0 flex-shrink-0 w-[328px] h-[90px] flex justify-center relative">
         <div className="flex justify-start items-start w-fit h-fit  p-[4.747252941131592px] rounded-full bg-[#65bd47]">
             <svg
@@ -44,7 +41,7 @@ const ResponsiveRecived = () => {
           Done
         </p>
       </button>
-    </form>
+    </>
   );
 };
 

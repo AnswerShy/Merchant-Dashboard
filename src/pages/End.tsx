@@ -19,6 +19,9 @@ function EndPage() {
       <p className="text-s text-center text-[#4f637d]">
         and your name is {localStorage.getItem("username")}
       </p>
+      <Link to="/registration" className="text-xl text-center text-[#32abf2]">
+          registration again
+        </Link>
     </section>
   ) : (
     <section className="flex">
