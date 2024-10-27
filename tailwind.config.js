@@ -15,9 +15,9 @@ export default {
       },
       backgroundImage: {
         'custom-gradient': 'linear-gradient(339.02deg, #0D3251 0%, #19476C 103.05%)',
-        'custom-bg': "url('./src/assets/bg.svg')",
-        'password': "url('./src/assets/show.svg')",
-        "google": "url('./src/assets/googleLogo.svg')"
+        'custom-bg': "url('/bg.svg')",
+        'password': "url('/show.svg')",
+        "google": "url('/googleLogo.svg')"
       },
     },
   },

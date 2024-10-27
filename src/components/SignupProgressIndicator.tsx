@@ -1,5 +1,4 @@
 import React from "react";
-import Logo from "./Logo";
 
 interface SignupProgressProps {
   steps: string[];

@@ -8,7 +8,7 @@ interface FormFill {
 }
 
 const SignupStartForm: React.FC<FormFill> = ({ onFill, nextStep }) => {
-  const allInputsFill = (elemets: NodeListOf<HTMLElement>) => {
+  const allInputsFill = (elemets: NodeListOf<HTMLInputElement>) => {
     let allField: boolean = true;
 
     elemets.forEach((element) => {
