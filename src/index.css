@@ -4,6 +4,7 @@
 @tailwind utilities;
 
 * {
+    overflow-x: hidden;
     margin: 0;
     font-family: "Inter", sans-serif;
 }
@@ -110,4 +111,55 @@ button p {
 }
 .alt-btn-link {
     cursor: pointer;
+}
+
+/* Progress Bar Buttons */
+
+.button-form {
+    @apply flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2 px-3 py-1.5 rounded
+}
+
+.active-progress-button {
+    @apply hover:bg-[#134267] cursor-pointer
+}
+
+/* Progress Bar Tips */
+
+.indicator-tips {
+    position: absolute;
+    bottom: -15px;
+    right: 50%;
+    transform: translate(50%, -50%);
+    display: flex;
+    gap: 24px;
+    z-index: 5000;
+}
+
+@media (max-height: 731px) {
+    .min-custom-h-731 {
+        height: 100svh;
+    }
+}
+
+
+/* Progress Bar Buttons */
+
+.button-form {
+    @apply flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2 px-3 py-1.5 rounded
+}
+
+.active-progress-button {
+    @apply hover:bg-[#134267] cursor-pointer
+}
+
+/* Progress Bar Tips */
+
+.indicator-tips {
+    position: absolute;
+    bottom: -15px;
+    right: 50%;
+    transform: translate(50%, -50%);
+    display: flex;
+    gap: 24px;
+    z-index: 5000;
 }

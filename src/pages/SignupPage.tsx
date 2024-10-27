@@ -5,6 +5,7 @@ import SignupProgress from '../components/SignupProgressIndicator'
 import SignupStartForm from '../components/signupSteps/SignupStartForm';
 import SignupShopifyMainStep from '../components/signupSteps/ShopifySteps/SignupShopifyMainStep';
 import SignupGoogleMainStep from '../components/signupSteps/GoogleSteps/SignupGoogleMainStep';
+import Slider from '../components/TipsSlider';
 
 
 function SignupPage() {
@@ -19,6 +20,11 @@ function SignupPage() {
   const handleNextStep = () => {
     setCurrentStep(currentStep + 1);
   };
+  const handlePrevStep = () => {
+    if(currentStep > 0 ){
+      setCurrentStep(currentStep - 1);
+    }
+  }
 
   useEffect(() => {
     if(currentStep == 3) {
@@ -35,8 +41,9 @@ function SignupPage() {
   return (
     <section className='flex w-full flex-col xl:flex-row'>
       <aside 
-        className="flex justify-center items-center md:bg-custom-gradient h-fit py-4 md:py-0 md:h-0 xl:h-screen w-full md:w-0  xl:w-1/3">
-          <SignupProgress steps={steps} currentStep={currentStep} isShopifyConnected={isShopifyConnected} ifFormFull={isFormFull} />
+        className="flex flex-col justify-center items-center md:bg-custom-gradient h-fit py-4 md:py-0 md:h-0 xl:h-screen w-full md:w-0  xl:w-1/3">
+            <SignupProgress steps={steps} currentStep={currentStep} isShopifyConnected={isShopifyConnected} ifFormFull={isFormFull} handlePrevStep={handlePrevStep} />
+            <Slider />
       </aside>
       <main className='bg-custom-bg flex h-screen justify-center items-center w-full xl:w-2/3'>
         <form
