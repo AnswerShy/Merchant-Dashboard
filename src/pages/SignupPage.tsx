@@ -56,7 +56,7 @@ function SignupPage() {
       </aside>
       <main className='bg-custom-bg flex h-screen justify-center items-center w-full xl:w-2/3'>
         <form
-          className="flex md:shadow-form flex-col justify-start items-center w-max h-full md:w-fit md:h-max relative px-[32px] py-[16px] md:px-[40px] md:py-[64px] rounded-lg bg-white"
+          className="flex md:shadow-form flex-col justify-start items-center w-max h-full md:w-[480px] xl:w-fit md:h-max relative px-[32px] py-[16px] md:px-[40px] md:py-[64px] rounded-lg bg-white"
         >
           {signupStep[currentStep]}
         </form>
